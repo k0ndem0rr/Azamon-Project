@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Azamon/lib/aima/**/*.jar",
+        "Azamon/lib/**/*.jar"
+    ]
+}
