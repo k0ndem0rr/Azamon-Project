@@ -92,6 +92,10 @@ public class AzamonState {
         return azamonState;
     }
 
+    public Transporte getOfertas() {
+        return ofertas;
+    }
+
     public int[] getAsignaciones() {
         return asignaciones;
     }
