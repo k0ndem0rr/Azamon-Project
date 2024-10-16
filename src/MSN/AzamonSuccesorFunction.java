@@ -1,10 +1,8 @@
 package MSN;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import aima.search.framework.HeuristicFunction;
 import aima.search.framework.Successor;
 import aima.search.framework.SuccessorFunction;
 
@@ -12,8 +10,8 @@ public class AzamonSuccesorFunction implements SuccessorFunction {
     public List<Successor> getSuccessors(Object state) {
         ArrayList<Successor> succesors = new ArrayList<>();
         AzamonState azamonState = (AzamonState) state;
-        AzamonHeuristicFunction heuristicFunction = new AzamonHeuristicFunction();
-        int[] currentState = azamonState.getState();
+        int[] currentAsignaciones = azamonState.getAsignaciones();
+        double[] currentPesosLibres = azamonState.getPesosLibres();
         int nPaquetes = azamonState.getNumPaquetes();
         
         // Codigo para generar sucesores
@@ -23,24 +21,53 @@ public class AzamonSuccesorFunction implements SuccessorFunction {
 
         for (int i = 0; i < nPaquetes; i++) {
             for (int j = 0; j < azamonState.getNumOfertas(); j++) {
-                if (currentState[i] != j) {
-                    int[] newState = currentState.clone();
-                    newState[i] = j;
-                    succesors.add(new Successor("Cambiar paquete " + i + " a oferta " + j, azamonState.newState(newState)));
+                if (currentAsignaciones[i] != j) {
+                    int[] newAsignaciones = currentAsignaciones.clone();
+                    newAsignaciones[i] = j;
+
+                    double[] newPesosLibres = currentPesosLibres.clone();
+                    newPesosLibres[j] -= azamonState.getPaquete(i).getPeso();
+                    newPesosLibres[currentAsignaciones[i]] += azamonState.getPaquete(i).getPeso();
+
+                    AzamonState newState = azamonState.newAsignaciones(newAsignaciones, newPesosLibres);
+                    if(isSolutionState(newState)) succesors.add(new Successor("Cambiar paquete " + i + " a oferta " + j, newState));
                 }
             }
         }
         for (int i = 0; i < nPaquetes; i++) {
             for (int j = i+1; j < nPaquetes; j++) {
-                if (currentState[i] != currentState[j]) {
-                    int[] newState = currentState.clone();
-                    newState[i] = currentState[j];
-                    newState[j] = currentState[i];
-                    succesors.add(new Successor("Intercambiar paquete " + i + " con paquete " + j, azamonState.newState(newState)));
+                if (currentAsignaciones[i] != currentAsignaciones[j]) {
+                    int[] newAsignaciones = currentAsignaciones.clone();
+                    newAsignaciones[i] = currentAsignaciones[j];
+                    newAsignaciones[j] = currentAsignaciones[i];
+
+                    double[] newPesosLibres = currentPesosLibres.clone();
+                    newPesosLibres[currentAsignaciones[i]] += azamonState.getPaquete(i).getPeso() - azamonState.getPaquete(j).getPeso();
+                    newPesosLibres[currentAsignaciones[j]] += azamonState.getPaquete(j).getPeso() - azamonState.getPaquete(i).getPeso();
+
+                    AzamonState newState = azamonState.newAsignaciones(newAsignaciones, newPesosLibres); 
+                    if(isSolutionState(newState)) succesors.add(new Successor("Intercambiar paquete " + i + " con paquete " + j, newState));
                 }
             }
         }
 
         return succesors;
+    }
+
+    private boolean isSolutionState(AzamonState azamonState) {
+        AzamonState state = (AzamonState) azamonState;
+
+        for (double pesoLibre: state.getPesosLibres()) {
+            if (pesoLibre < 0) return false;
+        }
+
+        int[] asignaciones = state.getAsignaciones();
+        int nPaquetes = state.getNumPaquetes();
+
+        for (int i = 0; i < nPaquetes; i++) {
+            if (AzamonState.llegaEnFecha(state.getPaquete(i), state.getOferta(asignaciones[i])) == false) return false;
+        }
+
+        return true;
     }
 }

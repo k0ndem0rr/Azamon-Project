@@ -1,8 +1,6 @@
 package MSN;
 
 import IA.Azamon.*;
-import aima.*;
-import java.util.Random;
 
 public class AzamonState {
 
@@ -15,10 +13,13 @@ public class AzamonState {
     /// Número de ofertas
     private int nOfertas;
 
-    // Representación del estado:
+    // Representación de las asignaciones de paquetes a ofertas:
     // - Índice: paquete
     // - Valor: oferta
-    private int[] state;
+    private int[] asignaciones;
+
+    // Representación del peso libre en cada oferta
+    private double[] pesosLibres;
 
 
     // Constructor
@@ -29,17 +30,23 @@ public class AzamonState {
         ofertas = new Transporte(paquetes, ratio, seed);
         this.nPaquetes = nPaquetes;
         this.nOfertas = ofertas.size();
-        state = new int[nPaquetes];
+        asignaciones = new int[nPaquetes];
+        pesosLibres = new double[nOfertas];
+
+        for (int i = 0; i < nOfertas; i++) {
+            pesosLibres[i] = ofertas.get(i).getPesomax();
+        }
 
         estadoInicial();
     }
 
-    private AzamonState(Paquetes paquetes, Transporte ofertas, int[] state) {
+    private AzamonState(Paquetes paquetes, Transporte ofertas, int[] asignaciones, double[] pesosLibres) {
         this.paquetes = paquetes;
         this.ofertas = ofertas;
         this.nPaquetes = paquetes.size();
         this.nOfertas = ofertas.size();
-        this.state = state;
+        this.asignaciones = asignaciones;
+        this.pesosLibres = pesosLibres;
     }
 
     private void estadoInicial() {
@@ -64,13 +71,12 @@ public class AzamonState {
         // Recorremos las ofertas y asignamos paquetes hasta que no quepan más
         int i = 0; // Índice de paquetes
         for (Oferta oferta : ofertas) {
-            double pesoLibre = oferta.getPesomax(); // Peso libre en la oferta
             boolean nextCabe = true; // Indica si cabe el siguiente paquete
             while (nextCabe && i < nPaquetes) { // Mientras quepa el siguiente paquete y haya paquetes por asignar
-                System.out.println("Peso libre en oferta " + ofertas.indexOf(oferta) + ": " + pesoLibre);
-                if (sortedPaquetes[i][1] <= pesoLibre) { // Si cabe el paquete
-                    state[(int) sortedPaquetes[i][2]] = ofertas.indexOf(oferta); // Asignamos el paquete a la oferta
-                    pesoLibre -= sortedPaquetes[i][1]; // Restamos el peso del paquete al peso libre
+                System.out.println("Peso libre en oferta " + ofertas.indexOf(oferta) + ": " + pesosLibres[ofertas.indexOf(oferta)]);
+                if (sortedPaquetes[i][1] <= pesosLibres[ofertas.indexOf(oferta)]) { // Si cabe el paquete
+                    asignaciones[(int) sortedPaquetes[i][2]] = ofertas.indexOf(oferta); // Asignamos el paquete a la oferta
+                    pesosLibres[ofertas.indexOf(oferta)] -= sortedPaquetes[i][1]; // Restamos el peso del paquete al peso libre
                     i++;   // Pasamos al siguiente paquete
                 }
                 else { // Si no cabe el paquete
@@ -81,13 +87,17 @@ public class AzamonState {
         }
     }
 
-    public AzamonState newState(int[] newState) {
-        AzamonState azamonState = new AzamonState(paquetes, ofertas, newState);
+    public AzamonState newAsignaciones(int[] newAsignaciones, double[] newPesosLibres) {
+        AzamonState azamonState = new AzamonState(paquetes, ofertas, newAsignaciones, newPesosLibres);
         return azamonState;
     }
 
-    public int[] getState() {
-        return state;
+    public int[] getAsignaciones() {
+        return asignaciones;
+    }
+
+    public double[] getPesosLibres() {
+        return pesosLibres;
     }
 
     public int getNumPaquetes() {
@@ -109,7 +119,7 @@ public class AzamonState {
     public String toString() {
         String str = "";
         for (int i = 0; i < nPaquetes; i++) {
-            str += "Paquete " + i + ": Oferta " + state[i] + "\n";
+            str += "Paquete " + i + ": Oferta " + asignaciones[i] + "\n";
         }
         return str;
     }
