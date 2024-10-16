@@ -31,6 +31,18 @@ public class AzamonState {
         this.nOfertas = ofertas.size();
         state = new int[nPaquetes];
 
+        estadoInicial();
+    }
+
+    private AzamonState(Paquetes paquetes, Transporte ofertas, int[] state) {
+        this.paquetes = paquetes;
+        this.ofertas = ofertas;
+        this.nPaquetes = paquetes.size();
+        this.nOfertas = ofertas.size();
+        this.state = state;
+    }
+
+    private void estadoInicial() {
         // Transformación de paquetes a array de dobles
         double[][] sortedPaquetes = new double[nPaquetes][3];
         for (int i = 0; i < nPaquetes; i++) {
@@ -45,7 +57,6 @@ public class AzamonState {
                 return Double.compare(a[0], b[0]);
             }
         });
-
 
         System.out.println(java.util.Arrays.deepToString(sortedPaquetes));
         
@@ -68,6 +79,11 @@ public class AzamonState {
             }
             System.out.println("Paquetes por asignar: " + (nPaquetes - (i+1)));
         }
+    }
+
+    public AzamonState newState(int[] newState) {
+        AzamonState azamonState = new AzamonState(paquetes, ofertas, newState);
+        return azamonState;
     }
 
     public int[] getState() {
@@ -101,7 +117,7 @@ public class AzamonState {
     public static boolean llegaEnFecha(Paquete paquete, Oferta oferta) {
         int prioridad = paquete.getPrioridad();
         int maxDias = oferta.getDias();
-        
+
         return ((prioridad == 0 && maxDias <= 1) || (prioridad == 1 && maxDias <= 3) || prioridad == 2);
     }
 }

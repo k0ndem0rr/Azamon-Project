@@ -1,7 +1,11 @@
 package MSN;
 
 import IA.Azamon.*;
-import aima.*;
+
+import aima.search.framework.Search;
+import aima.search.framework.Problem;
+import aima.search.informed.HillClimbingSearch;
+import aima
 
 public class AzamonMain {
 
@@ -19,5 +23,11 @@ public class AzamonMain {
 
 
         System.out.println(java.util.Arrays.toString(state.getState()));
+    }
+
+    private static void HillClimbingMSN(AzamonState azamon) {
+        Problem problem = new Problem(azamon, new AzamonSuccesorFunction(), new AzamonGoalTest(), new AzamonHeuristicFunction());
+        Search search = new HillClimbingSearch();
+
     }
 }
