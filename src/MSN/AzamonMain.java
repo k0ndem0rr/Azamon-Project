@@ -9,6 +9,7 @@ import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
 import aima.search.framework.Problem;
 import aima.search.informed.HillClimbingSearch;
+import aima.search.informed.SimulatedAnnealingSearch;
 
 public class AzamonMain {
 
@@ -32,6 +33,7 @@ public class AzamonMain {
         AzamonState state = new AzamonState(nPaquetes, ratio, seed);
 
         HillClimbingMSN(state);
+        SimulatedAnnealingMSN(state);
     }
 
     private static void HillClimbingMSN(AzamonState azamon) {
@@ -48,6 +50,20 @@ public class AzamonMain {
         }
     }
 
+    private static void SimulatedAnnealingMSN(AzamonState azamon) {
+        try{
+            Problem problem = new Problem(azamon, new AzamonSuccesorFunctionSA(), new AzamonGoalTest(), new AzamonHeuristicFunction());
+            Search search = new SimulatedAnnealingSearch(2000, 100, 5, 0.001);
+            SearchAgent agent = new SearchAgent(problem, search);
+
+            System.out.println();
+            printActions(agent.getActions());
+            printInstrumentation(agent.getInstrumentation());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     private static void printInstrumentation(Properties properties) {
         Iterator keys = properties.keySet().iterator();
         while (keys.hasNext()) {
