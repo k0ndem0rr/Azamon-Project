@@ -77,7 +77,7 @@ private void initComponents() {
     RatioS = new javax.swing.JSlider();
     ejecutarPrB = new javax.swing.JButton();
     SemillaL = new javax.swing.JLabel();
-    SemillaTF = new javax.swing.JFormattedTextField(new Integer(100));
+    SemillaTF = new javax.swing.JFormattedTextField(Integer.valueOf(100));
     AnnealingPL = new javax.swing.JLabel();
     NiterL = new javax.swing.JLabel();
     NiterS = new javax.swing.JSlider();
@@ -182,7 +182,7 @@ private void initComponents() {
 
     LambdaFT.setFormatterFactory(formLambda);
     LambdaFT.setToolTipText("Parametro Lambda");
-    LambdaFT.setValue(new Double(0.01));
+    LambdaFT.setValue(Double.valueOf(0.01));
 
     jMenu1.setText("Menu");
 
@@ -329,6 +329,7 @@ private void initComponents() {
         annealingTA.setText("");
         AzamonState state = new AzamonState(nPaquetes, 1, 0);
         HillClimbingMSN(state, hillClimbTA);
+        SimulatedAnnealingMSN(state, annealingTA);
     }// GEN-LAST:event_ejecutarBMousePressed
 
     private void HillClimbingMSN(AzamonState state, java.awt.TextArea a) {
@@ -342,6 +343,25 @@ private void initComponents() {
             // System.out.println();
             printActions(agent.getActions(), a);
             // printInstrumentation(agent.getInstrumentation());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void SimulatedAnnealingMSN(AzamonState state, java.awt.TextArea a) {
+        // System.out.println("\nTSP Simulated Annealing -->");
+        try {
+            Problem problem = new Problem(state, new AzamonSuccesorFunctionSA(), new AzamonGoalTest(),
+                    new AzamonHeuristicFunction());
+            Search search = new SimulatedAnnealingSearch(
+                NiterS.getValue(), 
+                1000,
+                ParKS.getValue(), 
+                numForm.parse(LambdaFT.getText()).doubleValue()
+            );
+            SearchAgent agent = new SearchAgent(problem, search);
+
+            printActions(agent.getActions(), a);
         } catch (Exception e) {
             e.printStackTrace();
         }

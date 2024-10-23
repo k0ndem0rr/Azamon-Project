@@ -20,6 +20,5 @@ public class AzamonHeuristicFunction implements HeuristicFunction {
 
 
 
-        
     }
 }
