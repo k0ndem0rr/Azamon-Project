@@ -36,7 +36,7 @@ public class AzamonMain {
 
     private static void HillClimbingMSN(AzamonState azamon) {
         try{
-            Problem problem = new Problem(azamon, new AzamonSuccesorFunctionSA(), new AzamonGoalTest(), new AzamonHeuristicFunction());
+            Problem problem = new Problem(azamon, new AzamonSuccesorFunction(), new AzamonGoalTest(), new AzamonHeuristicFunction());
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
 
