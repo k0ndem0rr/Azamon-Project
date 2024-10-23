@@ -26,8 +26,11 @@ public class AzamonSuccesorFunctionSA implements SuccessorFunction {
             int step = random.nextInt(2);
             int i, j;
             if (step == 1) {
-                i = j = random.nextInt(nPaquetes);
-                while (currentAsignaciones[i] == j) j = random.nextInt(nOfertas);
+                i = random.nextInt(nPaquetes);
+                do {
+                    j = random.nextInt(nOfertas);
+                } while (currentAsignaciones[i] == j);
+        
                 AzamonState newState = movePaquete(azamonState, i, j);
                 if(isSolutionState(newState)) succesors.add(new Successor("Cambiar paquete " + i + " a oferta " + j, newState));
             }
@@ -47,7 +50,6 @@ public class AzamonSuccesorFunctionSA implements SuccessorFunction {
         newAsignaciones[i] = j;
 
         double[] newPesosLibres = azamonState.getPesosLibres().clone();
-        System.out.println(newPesosLibres.toString());
         newPesosLibres[j] -= azamonState.getPaquete(i).getPeso();
         newPesosLibres[azamonState.getAsignaciones()[i]] += azamonState.getPaquete(i).getPeso();
 

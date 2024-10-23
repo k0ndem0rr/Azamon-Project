@@ -64,8 +64,6 @@ public class AzamonState {
                 return Double.compare(a[0], b[0]);
             }
         });
-
-        System.out.println(java.util.Arrays.deepToString(sortedPaquetes));
         
         // Asignación de paquetes a ofertas
         // Recorremos las ofertas y asignamos paquetes hasta que no quepan más
@@ -73,7 +71,6 @@ public class AzamonState {
         for (Oferta oferta : ofertas) {
             boolean nextCabe = true; // Indica si cabe el siguiente paquete
             while (nextCabe && i < nPaquetes) { // Mientras quepa el siguiente paquete y haya paquetes por asignar
-                System.out.println("Peso libre en oferta " + ofertas.indexOf(oferta) + ": " + pesosLibres[ofertas.indexOf(oferta)]);
                 if (sortedPaquetes[i][1] <= pesosLibres[ofertas.indexOf(oferta)]) { // Si cabe el paquete
                     asignaciones[(int) sortedPaquetes[i][2]] = ofertas.indexOf(oferta); // Asignamos el paquete a la oferta
                     pesosLibres[ofertas.indexOf(oferta)] -= sortedPaquetes[i][1]; // Restamos el peso del paquete al peso libre
@@ -83,7 +80,6 @@ public class AzamonState {
                     nextCabe = false; // Indicamos que no cabe el siguiente paquete
                 }
             }
-            System.out.println("Paquetes por asignar: " + (nPaquetes - (i+1)));
         }
     }
 

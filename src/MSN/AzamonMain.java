@@ -3,6 +3,7 @@ package MSN;
 import java.util.List;
 import java.util.Properties;
 import java.util.Iterator;
+import java.util.Scanner;
 
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
@@ -12,8 +13,23 @@ import aima.search.informed.HillClimbingSearch;
 public class AzamonMain {
 
     public static void main(String[] args) {
+        int nPaquetes;
+        double ratio;
+        int seed;
+        Scanner scanner = new Scanner(System.in);
 
-        AzamonState state = new AzamonState(10, 1, 0);
+        System.out.print("Introduce el número de paquetes: ");
+        nPaquetes = scanner.nextInt();
+
+        System.out.print("Introduce el ratio: ");
+        ratio = scanner.nextDouble();
+
+        System.out.print("Introduce la semilla: ");
+        seed = scanner.nextInt();
+
+        scanner.close();
+
+        AzamonState state = new AzamonState(nPaquetes, ratio, seed);
 
         HillClimbingMSN(state);
     }
