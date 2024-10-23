@@ -353,7 +353,7 @@ public class AzamonFrame extends javax.swing.JFrame {
                     ParKS.getValue(),
                     numForm.parse(LambdaFT.getText()).doubleValue());
             SearchAgent agent = new SearchAgent(problem, search);
-
+            
             printActions(agent.getActions(), a);
         } catch (Exception e) {
             e.printStackTrace();
@@ -362,9 +362,8 @@ public class AzamonFrame extends javax.swing.JFrame {
 
     private void printActions(List actions, java.awt.TextArea a) {
         for (int i = 0; i < actions.size(); i++) {
-            Object action = actions.get(i);
-            if (action instanceof String) {
-                String actionS = (String) action;
+            if (actions.get(i) instanceof String) {
+                String actionS = (String) actions.get(i);
                 a.append(actionS + "\n");
             }
         }
