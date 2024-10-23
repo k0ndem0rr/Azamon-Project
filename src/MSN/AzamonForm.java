@@ -63,291 +63,247 @@ public class AzamonForm extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        HillClimbingL = new javax.swing.JLabel();
-        AnnealingL = new javax.swing.JLabel();
-        annealingTA = new java.awt.TextArea();
-        hillClimbTA = new java.awt.TextArea();
-        paquetesL = new java.awt.Label();
-        ratioL = new java.awt.Label();
-        ejecutarB = new javax.swing.JButton();
-        PaquetesS = new javax.swing.JSlider();
-        RatioS = new javax.swing.JSlider();
-        ejecutarPrB = new javax.swing.JButton();
-        SemillaL = new javax.swing.JLabel();
-        SemillaTF = new javax.swing.JFormattedTextField(new Integer(1));
-        AnnealingPL = new javax.swing.JLabel();
-        NiterL = new javax.swing.JLabel();
-        NiterS = new javax.swing.JSlider();
-        LambdaL = new javax.swing.JLabel();
-        ParKS = new javax.swing.JSlider();
-        ParKL = new javax.swing.JLabel();
-        LambdaFT = new javax.swing.JFormattedTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        Salir = new javax.swing.JMenuItem();
+    jLabel2 = new javax.swing.JLabel();
+    HillClimbingL = new javax.swing.JLabel();
+    AnnealingL = new javax.swing.JLabel();
+    annealingTA = new java.awt.TextArea();
+    hillClimbTA = new java.awt.TextArea();
+    paquetesL = new java.awt.Label();
+    ratioL = new java.awt.Label();
+    ejecutarB = new javax.swing.JButton();
+    PaquetesS = new javax.swing.JSlider();
+    RatioS = new javax.swing.JSlider();
+    ejecutarPrB = new javax.swing.JButton();
+    SemillaL = new javax.swing.JLabel();
+    SemillaTF = new javax.swing.JFormattedTextField(new Integer(1));
+    AnnealingPL = new javax.swing.JLabel();
+    NiterL = new javax.swing.JLabel();
+    NiterS = new javax.swing.JSlider();
+    LambdaL = new javax.swing.JLabel();
+    ParKS = new javax.swing.JSlider();
+    ParKL = new javax.swing.JLabel();
+    LambdaFT = new javax.swing.JFormattedTextField();
+    jMenuBar1 = new javax.swing.JMenuBar();
+    jMenu1 = new javax.swing.JMenu();
+    Salir = new javax.swing.JMenuItem();
 
-        jLabel2.setText("jLabel2");
+    jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(" Problem");
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setTitle(" Problem");
 
-        HillClimbingL.setText("Hill Climbing");
+    HillClimbingL.setText("Hill Climbing");
 
-        AnnealingL.setText("Simulated Annealing");
+    AnnealingL.setText("Simulated Annealing");
 
-        annealingTA.setColumns(40);
-        annealingTA.setEditable(false);
-        annealingTA.setRows(30);
+    annealingTA.setColumns(40);
+    annealingTA.setEditable(false);
+    annealingTA.setRows(30);
 
-        hillClimbTA.setColumns(37);
-        hillClimbTA.setEditable(false);
-        hillClimbTA.setName("hillClimbingTA"); // NOI18N
-        hillClimbTA.setRows(30);
+    hillClimbTA.setColumns(37);
+    hillClimbTA.setEditable(false);
+    hillClimbTA.setName("hillClimbingTA"); // NOI18N
+    hillClimbTA.setRows(30);
 
-        paquetesL.setText("Num paquetes:");
+    paquetesL.setText("Num paquetes:");
 
-        ejecutarB.setText("Ejecutar Prob Aleatorio");
-        ejecutarB.setActionCommand(" Ejecutar");
-        ejecutarB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ejecutarBMousePressed(evt);
-            }
-        });
+    ratioL.setText("Ratio:");
 
-        PaquetesS.setMajorTickSpacing(5);
-        PaquetesS.setMaximum(40);
-        PaquetesS.setMinimum(10);
-        PaquetesS.setMinorTickSpacing(5);
-        PaquetesS.setPaintLabels(true);
-        PaquetesS.setPaintTicks(true);
-        PaquetesS.setSnapToTicks(true);
-        PaquetesS.setToolTipText("Elige el número de paquetes");
-        PaquetesS.setValue(10);
+    ejecutarB.setText("Ejecutar Prob Aleatorio");
+    ejecutarB.setActionCommand(" Ejecutar");
+    ejecutarB.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mousePressed(java.awt.event.MouseEvent evt) {
+            ejecutarBMousePressed(evt);
+        }
+    });
 
-        RatioS.setMajorTickSpacing(5);
-        RatioS.setMaximum(200);
-        RatioS.setMinimum(0);
-        RatioS.setMinorTickSpacing(1);
-        RatioS.setPaintLabels(true);
-        RatioS.setPaintTicks(true);
-        RatioS.setSnapToTicks(true);
-        RatioS.setToolTipText("Elige el ratio");
-        RatioS.setValue(100);
+    PaquetesS.setMajorTickSpacing(5);
+    PaquetesS.setMaximum(40);
+    PaquetesS.setMinimum(10);
+    PaquetesS.setMinorTickSpacing(5);
+    PaquetesS.setPaintLabels(true);
+    PaquetesS.setPaintTicks(true);
+    PaquetesS.setSnapToTicks(true);
+    PaquetesS.setToolTipText("Elige el número de paquetes");
+    PaquetesS.setValue(10);
 
-        ejecutarPrB.setText("Ejecutar Prob Específico");
-        ejecutarPrB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ejecutarPrBActionPerformed(evt);
-            }
-        });
+    RatioS.setMajorTickSpacing(50);
+    RatioS.setMaximum(150);
+    RatioS.setMinimum(50);
+    RatioS.setMinorTickSpacing(50);
+    RatioS.setPaintLabels(true);
+    RatioS.setPaintTicks(true);
+    RatioS.setSnapToTicks(false);
+    RatioS.setToolTipText("Elige el ratio");
+    RatioS.setValue(100);
 
-        SemillaL.setText("Semilla:");
+    ejecutarPrB.setText("Ejecutar Prob Específico");
+    ejecutarPrB.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            ejecutarPrBActionPerformed(evt);
+        }
+    });
 
-        SemillaTF.setFormatterFactory(formSeed);
-        SemillaTF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+    SemillaL.setText("Semilla:");
 
-        AnnealingPL.setText("Parametros Annealing");
+    SemillaTF.setFormatterFactory(formSeed);
+    SemillaTF.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        NiterL.setText("Num It:");
+    AnnealingPL.setText("Parametros Annealing");
 
-        NiterS.setMajorTickSpacing(1000);
-        NiterS.setMaximum(10000);
-        NiterS.setMinimum(1000);
-        NiterS.setMinorTickSpacing(1000);
-        NiterS.setOrientation(javax.swing.JSlider.VERTICAL);
-        NiterS.setPaintLabels(true);
-        NiterS.setPaintTicks(true);
-        NiterS.setSnapToTicks(true);
-        NiterS.setToolTipText("Numero de iteraciones total");
+    NiterL.setText("Num It:");
 
-        LambdaL.setText("Lambda");
+    NiterS.setMajorTickSpacing(1000);
+    NiterS.setMaximum(10000);
+    NiterS.setMinimum(1000);
+    NiterS.setMinorTickSpacing(1000);
+    NiterS.setOrientation(javax.swing.JSlider.VERTICAL);
+    NiterS.setPaintLabels(true);
+    NiterS.setPaintTicks(true);
+    NiterS.setSnapToTicks(true);
+    NiterS.setToolTipText("Numero de iteraciones total");
 
-        ParKS.setMajorTickSpacing(1);
-        ParKS.setMaximum(20);
-        ParKS.setMinimum(1);
-        ParKS.setMinorTickSpacing(1);
-        ParKS.setOrientation(javax.swing.JSlider.VERTICAL);
-        ParKS.setPaintLabels(true);
-        ParKS.setPaintTicks(true);
-        ParKS.setSnapToTicks(true);
-        ParKS.setToolTipText("Lambda");
-        ParKS.setValue(5);
+    LambdaL.setText("Lambda");
 
-        ParKL.setText("K");
+    ParKS.setMajorTickSpacing(1);
+    ParKS.setMaximum(20);
+    ParKS.setMinimum(1);
+    ParKS.setMinorTickSpacing(1);
+    ParKS.setOrientation(javax.swing.JSlider.VERTICAL);
+    ParKS.setPaintLabels(true);
+    ParKS.setPaintTicks(true);
+    ParKS.setSnapToTicks(true);
+    ParKS.setToolTipText("Lambda");
+    ParKS.setValue(5);
 
-        LambdaFT.setFormatterFactory(formLambda);
-        LambdaFT.setToolTipText("Parametro Lambda");
-        LambdaFT.setValue(new Double(0.01));
+    ParKL.setText("K");
 
-        jMenu1.setText("Menu");
+    LambdaFT.setFormatterFactory(formLambda);
+    LambdaFT.setToolTipText("Parametro Lambda");
+    LambdaFT.setValue(new Double(0.01));
 
-        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/door_out.png"))); // NOI18N
-        Salir.setText("Salir");
-        Salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
-            }
-        });
-        jMenu1.add(Salir);
+    jMenu1.setText("Menu");
 
-        jMenuBar1.add(jMenu1);
+    Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/door_out.png"))); // NOI18N
+    Salir.setText("Salir");
+    Salir.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            SalirActionPerformed(evt);
+        }
+    });
+    jMenu1.add(Salir);
 
-        setJMenuBar(jMenuBar1);
+    jMenuBar1.add(jMenu1);
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+    setJMenuBar(jMenuBar1);
+
+    org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        .add(layout.createSequentialGroup()
+            .add(12, 12, 12)
+            .add(hillClimbTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 313, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(annealingTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 317, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(NiterL)
+                        .add(NiterS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                            .add(ParKL)
+                            .add(21, 21, 21))
                         .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(layout.createSequentialGroup()
-                                                .add(12, 12, 12)
-                                                .add(hillClimbTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 313,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(annealingTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 317,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                        .add(layout.createSequentialGroup()
-                                                                .add(layout
-                                                                        .createParallelGroup(
-                                                                                org.jdesktop.layout.GroupLayout.LEADING)
-                                                                        .add(NiterL)
-                                                                        .add(NiterS,
-                                                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                                                .addPreferredGap(
-                                                                        org.jdesktop.layout.LayoutStyle.RELATED)
-                                                                .add(layout
-                                                                        .createParallelGroup(
-                                                                                org.jdesktop.layout.GroupLayout.LEADING)
-                                                                        .add(org.jdesktop.layout.GroupLayout.TRAILING,
-                                                                                layout.createSequentialGroup()
-                                                                                        .add(ParKL)
-                                                                                        .add(21, 21, 21))
-                                                                        .add(layout.createSequentialGroup()
-                                                                                .add(ParKS,
-                                                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)
-                                                                                .addPreferredGap(
-                                                                                        org.jdesktop.layout.LayoutStyle.RELATED)))
-                                                                .add(layout
-                                                                        .createParallelGroup(
-                                                                                org.jdesktop.layout.GroupLayout.LEADING)
-                                                                        .add(LambdaFT,
-                                                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                                                72,
-                                                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                                        .add(LambdaL)))
-                                                        .add(AnnealingPL)))
-                                        .add(layout.createSequentialGroup()
-                                                .add(149, 149, 149)
-                                                .add(ejecutarB)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(ejecutarPrB)
-                                                .add(22, 22, 22)
-                                                .add(SemillaL)
-                                                .add(27, 27, 27)
-                                                .add(SemillaTF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 89,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(layout.createSequentialGroup()
-                                                .add(180, 180, 180)
-                                                .add(paquetesL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(19, 19, 19)
-                                                .add(PaquetesS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        
-                                                .add(180, 180, 180)
-                                                .add(ratioL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(19, 19, 19)
-                                                .add(RatioS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(layout.createSequentialGroup()
-                                                .add(109, 109, 109)
-                                                .add(HillClimbingL)
-                                                .add(233, 233, 233)
-                                                .add(AnnealingL)))
-                                .addContainerGap(41, Short.MAX_VALUE)));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(ParKS, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(LambdaFT, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 72, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(LambdaL)))
+                .add(AnnealingPL)))
+        .add(layout.createSequentialGroup()
+            .add(149, 149, 149)
+            .add(ejecutarB)
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(ejecutarPrB)
+            .add(22, 22, 22)
+            .add(SemillaL)
+            .add(27, 27, 27)
+            .add(SemillaTF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 89, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(paquetesL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(19, 19, 19)
+                    .add(PaquetesS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(180, 180, 360))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(ratioL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(38, 38, 38)
+                    .add(RatioS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+        .add(layout.createSequentialGroup()
+            .add(109, 109, 109)
+            .add(HillClimbingL)
+            .add(233, 233, 233)
+            .add(AnnealingL)))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        .add(layout.createSequentialGroup()
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(PaquetesS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createSequentialGroup()
+                    .add(20, 20, 20)
+                    .add(paquetesL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(RatioS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createSequentialGroup()
+                    .add(20, 20, 20)
+                    .add(ratioL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(19, 19, 19)
+                    .add(HillClimbingL))
+                .add(layout.createSequentialGroup()
+                    .add(18, 18, 18)
+                    .add(AnnealingL)))
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                    .add(AnnealingPL)
+                    .add(25, 25, 25)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(NiterL)
+                        .add(LambdaL)
+                        .add(ParKL))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                         .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(PaquetesS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(layout.createSequentialGroup()
-                                                .add(20, 20, 20)
-                                                .add(paquetesL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(layout.createSequentialGroup()
-                                                .add(19, 19, 19)
-                                                .add(HillClimbingL))
-                                        .add(layout.createSequentialGroup()
-                                                .add(18, 18, 18)
-                                                .add(AnnealingL)))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                                .add(AnnealingPL)
-                                                .add(25, 25, 25)
-                                                .add(layout
-                                                        .createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                                        .add(NiterL)
-                                                        .add(LambdaL)
-                                                        .add(ParKL))
-                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                                        .add(layout.createSequentialGroup()
-                                                                .add(15, 15, 15)
-                                                                .add(NiterS,
-                                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                                        org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                                        org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        org.jdesktop.layout.LayoutStyle.RELATED, 69,
-                                                                        Short.MAX_VALUE))
-                                                        .add(layout.createSequentialGroup()
-                                                                .add(18, 18, 18)
-                                                                .add(layout.createParallelGroup(
-                                                                        org.jdesktop.layout.GroupLayout.BASELINE)
-                                                                        .add(LambdaFT,
-                                                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                                        .add(ParKS,
-                                                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                                                266, Short.MAX_VALUE)))))
-                                        .add(annealingTA, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 343,
-                                                Short.MAX_VALUE)
-                                        .add(org.jdesktop.layout.GroupLayout.TRAILING, hillClimbTA,
-                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
-                                .add(24, 24, 24)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                        .add(ejecutarPrB)
-                                        .add(SemillaL)
-                                        .add(SemillaTF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(ejecutarB, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25,
-                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap()));
+                            .add(15, 15, 15)
+                            .add(NiterS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 69, Short.MAX_VALUE))
+                        .add(layout.createSequentialGroup()
+                            .add(18, 18, 18)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                .add(LambdaFT, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(ParKS, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)))))
+                .add(annealingTA, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, hillClimbTA, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+            .add(24, 24, 24)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(ejecutarPrB)
+                .add(SemillaL)
+                .add(SemillaTF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(ejecutarB, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
+    );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
-
+    pack();
+}
+        // </editor-fold>//GEN-END:initComponents
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
         dispose();
