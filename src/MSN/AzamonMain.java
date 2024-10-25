@@ -15,10 +15,10 @@ public class AzamonMain {
 
     public static void main(String[] args) {
 
-
         int nPaquetes;
         double ratio;
         int seed;
+        int heuristic;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Introduce el número de paquetes: ");
@@ -30,7 +30,11 @@ public class AzamonMain {
         System.out.print("Introduce la semilla: ");
         seed = scanner.nextInt();
 
+        System.out.print("Introduce el heuristico: ");
+        heuristic = scanner.nextInt();
+
         scanner.close();
+        //Ini tiempo
 
         long startTime = System.currentTimeMillis();
 
@@ -55,6 +59,7 @@ public class AzamonMain {
 
             System.out.println();
             printActions(agent.getActions());
+            System.out.println(azamon.getAsignaciones().toString());
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
             e.printStackTrace();

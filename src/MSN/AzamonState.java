@@ -21,9 +21,11 @@ public class AzamonState {
     // Representación del peso libre en cada oferta
     private double[] pesosLibres;
 
+    private int heuristic;
+
 
     // Constructor
-    public AzamonState(int nPaquetes, double ratio, int seed) {
+    public AzamonState(int nPaquetes, double ratio, int seed, int heuristic) {
 
         // Inicialización de paquetes y ofertas
         paquetes = new Paquetes(nPaquetes, seed);
@@ -32,6 +34,7 @@ public class AzamonState {
         this.nOfertas = ofertas.size();
         asignaciones = new int[nPaquetes];
         pesosLibres = new double[nOfertas];
+        this.heuristic = heuristic;
 
         for (int i = 0; i < nOfertas; i++) {
             pesosLibres[i] = ofertas.get(i).getPesomax();
@@ -40,13 +43,14 @@ public class AzamonState {
         estadoInicial();
     }
 
-    private AzamonState(Paquetes paquetes, Transporte ofertas, int[] asignaciones, double[] pesosLibres) {
+    private AzamonState(Paquetes paquetes, Transporte ofertas, int[] asignaciones, double[] pesosLibres, int heuristic) {
         this.paquetes = paquetes;
         this.ofertas = ofertas;
         this.nPaquetes = paquetes.size();
         this.nOfertas = ofertas.size();
         this.asignaciones = asignaciones;
         this.pesosLibres = pesosLibres;
+        this.heuristic = heuristic;
     }
 
     private void estadoInicial() {
@@ -84,7 +88,7 @@ public class AzamonState {
     }
 
     public AzamonState newAsignaciones(int[] newAsignaciones, double[] newPesosLibres) {
-        AzamonState azamonState = new AzamonState(paquetes, ofertas, newAsignaciones, newPesosLibres);
+        AzamonState azamonState = new AzamonState(paquetes, ofertas, newAsignaciones, newPesosLibres, heuristic);
         return azamonState;
     }
 
@@ -116,6 +120,10 @@ public class AzamonState {
         return ofertas.get(i);
     }
 
+    public Paquetes getPaquetes() {return  paquetes;}
+
+    public int getHeuristic() {return heuristic;}
+
     public Paquete getPaquete(int i) {
         return paquetes.get(i);
     }
@@ -127,6 +135,7 @@ public class AzamonState {
         }
         return str;
     }
+
 
     public static boolean llegaEnFecha(Paquete paquete, Oferta oferta) {
         int prioridad = paquete.getPrioridad();
