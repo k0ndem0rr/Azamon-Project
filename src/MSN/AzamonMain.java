@@ -14,6 +14,8 @@ import aima.search.informed.SimulatedAnnealingSearch;
 public class AzamonMain {
 
     public static void main(String[] args) {
+
+
         int nPaquetes;
         double ratio;
         int seed;
@@ -30,10 +32,19 @@ public class AzamonMain {
 
         scanner.close();
 
+        long startTime = System.currentTimeMillis();
+
         AzamonState state = new AzamonState(nPaquetes, ratio, seed);
+
+        System.out.println(state.getPaquetes());
+        System.out.println(state.getOfertas());
+        System.out.println(state.toString());
 
         HillClimbingMSN(state);
         SimulatedAnnealingMSN(state);
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("Execution time: " + (endTime - startTime) + "ms");
     }
 
     private static void HillClimbingMSN(AzamonState azamon) {
@@ -63,7 +74,7 @@ public class AzamonMain {
             e.printStackTrace();
         }
     }
-    
+
     private static void printInstrumentation(Properties properties) {
         Iterator keys = properties.keySet().iterator();
         while (keys.hasNext()) {
@@ -76,7 +87,7 @@ public class AzamonMain {
     
     private static void printActions(List actions) {
         for (int i = 0; i < actions.size(); i++) {
-            String action = (String) actions.get(i);
+            String action = (String) actions.get(i).toString();
             System.out.println(action);
         }
     }

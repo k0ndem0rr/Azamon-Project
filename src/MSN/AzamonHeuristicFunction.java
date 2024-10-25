@@ -14,6 +14,7 @@ public class AzamonHeuristicFunction implements HeuristicFunction {
 
         for (Oferta oferta: ofertas) {
             precioTotal += (oferta.getPesomax() - pesosLibres[ofertas.indexOf(oferta)]) * oferta.getPrecio();
+            System.out.println("Precio total: " + precioTotal);
         }
 
         return -precioTotal;
