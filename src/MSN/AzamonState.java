@@ -96,6 +96,10 @@ public class AzamonState {
         return ofertas;
     }
 
+    public Paquetes getPaquetes() {
+        return paquetes;
+    }
+
     public int[] getAsignaciones() {
         return asignaciones;
     }

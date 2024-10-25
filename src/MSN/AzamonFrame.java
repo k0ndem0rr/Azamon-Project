@@ -6,7 +6,9 @@
 
 package MSN;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import aima.search.framework.Problem;
 import aima.search.framework.Search;
@@ -140,13 +142,14 @@ public class AzamonFrame extends javax.swing.JFrame {
 
         NiterS.setMajorTickSpacing(1000);
         NiterS.setMaximum(10000);
-        NiterS.setMinimum(1000);
+        NiterS.setMinimum(0);
         NiterS.setMinorTickSpacing(1000);
         NiterS.setOrientation(javax.swing.JSlider.VERTICAL);
         NiterS.setPaintLabels(true);
         NiterS.setPaintTicks(true);
-        NiterS.setSnapToTicks(true);
+        NiterS.setSnapToTicks(false);
         NiterS.setToolTipText("Numero de iteraciones total");
+        NiterS.setValue(2000);
 
         LambdaL.setText("Lambda");
 
@@ -310,24 +313,26 @@ public class AzamonFrame extends javax.swing.JFrame {
             nPaquetes = PaquetesS.getValue();
             hillClimbTA.setText("");
             annealingTA.setText("");
-           // AzamonState state = new AzamonState(nPaquetes, ratio, sm);
-           // HillClimbingMSN(state, hillClimbTA);
+          
+            AzamonState state = new AzamonState(nPaquetes, ratio, sm);
+            HillClimbingMSN(state, hillClimbTA);
+            SimulatedAnnealingMSN(state, annealingTA);
+          
         } catch (ParseException e) {
         }
     }
 
     private void ejecutarBMousePressed(java.awt.event.MouseEvent evt) {
-        try {
-            int sm = numForm.parse(SemillaTF.getText()).intValue();
-            int ratio = RatioS.getValue()/100;
+       
+            int sm = 5;
+            int ratio = 1;
             nPaquetes = PaquetesS.getValue();
             hillClimbTA.setText("");
             annealingTA.setText("");
-           // AzamonState state = new AzamonState(nPaquetes, ratio, sm);
-          //  HillClimbingMSN(state, hillClimbTA);
-         //   SimulatedAnnealingMSN(state, annealingTA);
-        } catch (ParseException e) {
-        }
+      
+            AzamonState state = new AzamonState(nPaquetes, ratio, sm);
+            HillClimbingMSN(state, hillClimbTA);
+            SimulatedAnnealingMSN(state, annealingTA);
     }
 
     private void HillClimbingMSN(AzamonState state, java.awt.TextArea a) {
@@ -338,6 +343,7 @@ public class AzamonFrame extends javax.swing.JFrame {
             SearchAgent agent = new SearchAgent(problem, search);
 
             printActions(agent.getActions(), a);
+            printInstrumentation(agent.getInstrumentation(), a);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -354,7 +360,8 @@ public class AzamonFrame extends javax.swing.JFrame {
                     numForm.parse(LambdaFT.getText()).doubleValue());
             SearchAgent agent = new SearchAgent(problem, search);
 
-            printActions(agent.getActions(), a);
+            printActions((List) agent.getActions(), a);
+            printInstrumentation(agent.getInstrumentation(), a);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -362,12 +369,19 @@ public class AzamonFrame extends javax.swing.JFrame {
 
     private void printActions(List actions, java.awt.TextArea a) {
         for (int i = 0; i < actions.size(); i++) {
-            Object action = actions.get(i);
-            if (action instanceof String) {
-                String actionS = (String) action;
-                a.append(actionS + "\n");
-            }
+            String actionS = (String) actions.get(i).toString();
+            a.append(actionS + "\n");
         }
+    }
+
+    private static void printInstrumentation(Properties properties, java.awt.TextArea a) {
+        Iterator keys = properties.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            String property = properties.getProperty(key);
+            a.append(key + " : " + property + "\n");
+        }
+        
     }
 
     public static void main(String args[]) {

@@ -1,7 +1,0 @@
-Sobre el estado inicial: Si no generase siempre solucion existiendo
-solución podemos:
- - Hacer que cada oferta se recorra todos los paquetes por si alguno sí cabe
- - Ordenar los paquetes por prioridad y si hay empate peso. 
-
-
- Posible bug en el constructor a partir de paquetes y ofertas
