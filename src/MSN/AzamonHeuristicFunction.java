@@ -11,7 +11,6 @@ public class AzamonHeuristicFunction implements HeuristicFunction {
     public double getHeuristicValue(Object state) {
         AzamonState azamonState = (AzamonState) state;
         double precioTotal = 0;
-        int numPaquetes = azamonState.getNumPaquetes();
         Paquetes paquetes = azamonState.getPaquetes();
         int[] assignaciones = azamonState.getAsignaciones();
         Transporte ofertas = azamonState.getOfertas();
@@ -24,8 +23,8 @@ public class AzamonHeuristicFunction implements HeuristicFunction {
             (((oferta.getDias() > 2) ? 1 : 0) + ((oferta.getDias() == 5) ? 1 : 0)) 
             * (oferta.getPesomax() - pesosLibres[ofertas.indexOf(oferta)]) * 0.25;
         }
-        
-        if (azamonState.getHeuristic() == 1) {
+
+        if (azamonState.getHeuristic() == 0) {
             return -precioTotal;
         } else {
             double felicidad = 0;

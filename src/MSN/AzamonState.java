@@ -25,7 +25,7 @@ public class AzamonState {
 
 
     // Constructor
-    public AzamonState(int nPaquetes, double ratio, int seed, int heuristic) {
+    public AzamonState(int nPaquetes, double ratio, int seed, int heuristic, boolean inicialAlt) {
 
         // Inicialización de paquetes y ofertas
         paquetes = new Paquetes(nPaquetes, seed);
@@ -40,7 +40,8 @@ public class AzamonState {
             pesosLibres[i] = ofertas.get(i).getPesomax();
         }
 
-        estadoInicial();
+        if(inicialAlt) estadoInicialAlt();
+        else estadoInicial();
     }
 
     private AzamonState(Paquetes paquetes, Transporte ofertas, int[] asignaciones, double[] pesosLibres, int heuristic) {
@@ -82,6 +83,45 @@ public class AzamonState {
                 }
                 else { // Si no cabe el paquete
                     nextCabe = false; // Indicamos que no cabe el siguiente paquete
+                }
+            }
+        }
+    }
+
+    private void estadoInicialAlt() {
+        double[][] sortedPaquetes = new double[nPaquetes][3];
+        for (int i = 0; i < nPaquetes; i++) {
+            sortedPaquetes[i][0] = paquetes.get(i).getPrioridad();
+            sortedPaquetes[i][1] = paquetes.get(i).getPeso();
+            sortedPaquetes[i][2] = i;
+        }
+
+        // Ordenación de paquetes por peso
+        java.util.Arrays.sort(sortedPaquetes, new java.util.Comparator<double[]>() {
+            public int compare(double[] a, double[] b) {
+                return Double.compare(a[1], b[1]);
+            }
+        });
+
+        double[][] sortedOfertas = new double[nOfertas][2];
+        for (int i = 0; i < nOfertas; i++) {
+            sortedOfertas[i][0] = ofertas.get(i).getPrecio();
+            sortedOfertas[i][1] = i;
+        }
+
+        // Ordenación de ofertas por precio
+        java.util.Arrays.sort(sortedOfertas, new java.util.Comparator<double[]>() {
+            public int compare(double[] a, double[] b) {
+                return Double.compare(a[0], b[0]);
+            }
+        });
+
+        for (int i = 0; i < nPaquetes; i++) {
+            for (int j = 0; j < nOfertas; j++) {
+                if (sortedPaquetes[i][1] <= pesosLibres[(int) sortedOfertas[j][1]] && llegaEnFecha(paquetes.get((int) sortedPaquetes[i][2]), ofertas.get((int) sortedOfertas[j][1]))) {
+                    asignaciones[(int) sortedPaquetes[i][2]] = (int) sortedOfertas[j][1];
+                    pesosLibres[(int) sortedOfertas[j][1]] -= sortedPaquetes[i][1];
+                    break;
                 }
             }
         }

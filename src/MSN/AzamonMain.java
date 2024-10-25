@@ -19,6 +19,8 @@ public class AzamonMain {
         double ratio;
         int seed;
         int heuristic;
+        boolean inicialAlt;
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Introduce el número de paquetes: ");
@@ -30,25 +32,32 @@ public class AzamonMain {
         System.out.print("Introduce la semilla: ");
         seed = scanner.nextInt();
 
-        System.out.print("Introduce el heuristico: ");
+        System.out.print("Heurístico por precio (0) o por felicidad (1): ");
         heuristic = scanner.nextInt();
 
-        scanner.close();
-        //Ini tiempo
+        System.out.print("Solución inicial por precio (0) o por felicidad (1): ");
+        inicialAlt = scanner.nextInt() == 0;
 
+        scanner.close();
+
+        System.out.println("\n");
+
+        //Ini tiempo
         long startTime = System.currentTimeMillis();
 
-        AzamonState state = new AzamonState(nPaquetes, ratio, seed, heuristic);
+        AzamonState state = new AzamonState(nPaquetes, ratio, seed, heuristic, inicialAlt);
 
-        System.out.println(state.getPaquetes());
-        System.out.println(state.getOfertas());
-        System.out.println(state.toString());
+        long firstSolutionTime = System.currentTimeMillis();
 
         HillClimbingMSN(state);
+
+        long HillClimbingTime = System.currentTimeMillis();
+
         SimulatedAnnealingMSN(state);
 
         long endTime = System.currentTimeMillis();
-        System.out.println("Execution time: " + (endTime - startTime) + "ms");
+
+        System.out.println("\n Total execution time: " + (endTime - startTime) + "ms: \n" + "  - First solution time: " + (firstSolutionTime - startTime) + "ms\n" + "  - Hill Climbing time: " + (HillClimbingTime - firstSolutionTime) + "ms\n" + "  - Simulated Annealing time: " + (endTime - HillClimbingTime) + "ms");
     }
 
     private static void HillClimbingMSN(AzamonState azamon) {
@@ -57,9 +66,7 @@ public class AzamonMain {
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
 
-            System.out.println();
             printActions(agent.getActions());
-            System.out.println(azamon.getAsignaciones().toString());
             printInstrumentation(agent.getInstrumentation());
         } catch (Exception e) {
             e.printStackTrace();
