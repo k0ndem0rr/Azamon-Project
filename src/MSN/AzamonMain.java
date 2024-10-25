@@ -38,7 +38,7 @@ public class AzamonMain {
 
         long startTime = System.currentTimeMillis();
 
-        AzamonState state = new AzamonState(nPaquetes, ratio, seed);
+        AzamonState state = new AzamonState(nPaquetes, ratio, seed, heuristic);
 
         System.out.println(state.getPaquetes());
         System.out.println(state.getOfertas());

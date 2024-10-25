@@ -120,8 +120,6 @@ public class AzamonState {
         return ofertas.get(i);
     }
 
-    public Paquetes getPaquetes() {return  paquetes;}
-
     public int getHeuristic() {return heuristic;}
 
     public Paquete getPaquete(int i) {

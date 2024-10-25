@@ -314,7 +314,7 @@ public class AzamonFrame extends javax.swing.JFrame {
             hillClimbTA.setText("");
             annealingTA.setText("");
           
-            AzamonState state = new AzamonState(nPaquetes, ratio, sm);
+            AzamonState state = new AzamonState(nPaquetes, ratio, sm, 0);
             HillClimbingMSN(state, hillClimbTA);
             SimulatedAnnealingMSN(state, annealingTA);
           
@@ -323,14 +323,10 @@ public class AzamonFrame extends javax.swing.JFrame {
     }
 
     private void ejecutarBMousePressed(java.awt.event.MouseEvent evt) {
-       
-            int sm = 5;
-            int ratio = 1;
-            nPaquetes = PaquetesS.getValue();
             hillClimbTA.setText("");
             annealingTA.setText("");
       
-            AzamonState state = new AzamonState(nPaquetes, ratio, sm);
+            AzamonState state = new AzamonState(20, 2, 0, 0);
             HillClimbingMSN(state, hillClimbTA);
             SimulatedAnnealingMSN(state, annealingTA);
     }

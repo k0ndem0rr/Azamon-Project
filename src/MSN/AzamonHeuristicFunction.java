@@ -20,8 +20,11 @@ public class AzamonHeuristicFunction implements HeuristicFunction {
         for (Oferta oferta: ofertas) {
             precioTotal += (oferta.getPesomax() - pesosLibres[ofertas.indexOf(oferta)]) * oferta.getPrecio();
           
-            precioTotal += ((oferta.getDias() == 3 || oferta.getDias() == 4) + (oferta.getDias() == 5)) * (oferta.getPesomax() - pesosLibres[ofertas.indexOf(oferta)]) * 0.25;
+            precioTotal += 
+            (((oferta.getDias() > 2) ? 1 : 0) + ((oferta.getDias() == 5) ? 1 : 0)) 
+            * (oferta.getPesomax() - pesosLibres[ofertas.indexOf(oferta)]) * 0.25;
         }
+        
         if (azamonState.getHeuristic() == 1) {
             return -precioTotal;
         } else {
