@@ -310,8 +310,8 @@ public class AzamonFrame extends javax.swing.JFrame {
             nPaquetes = PaquetesS.getValue();
             hillClimbTA.setText("");
             annealingTA.setText("");
-            AzamonState state = new AzamonState(nPaquetes, ratio, sm);
-            HillClimbingMSN(state, hillClimbTA);
+           // AzamonState state = new AzamonState(nPaquetes, ratio, sm);
+           // HillClimbingMSN(state, hillClimbTA);
         } catch (ParseException e) {
         }
     }
@@ -323,9 +323,9 @@ public class AzamonFrame extends javax.swing.JFrame {
             nPaquetes = PaquetesS.getValue();
             hillClimbTA.setText("");
             annealingTA.setText("");
-            AzamonState state = new AzamonState(nPaquetes, ratio, sm);
-            HillClimbingMSN(state, hillClimbTA);
-            SimulatedAnnealingMSN(state, annealingTA);
+           // AzamonState state = new AzamonState(nPaquetes, ratio, sm);
+          //  HillClimbingMSN(state, hillClimbTA);
+         //   SimulatedAnnealingMSN(state, annealingTA);
         } catch (ParseException e) {
         }
     }

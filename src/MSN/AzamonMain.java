@@ -13,9 +13,11 @@ import aima.search.informed.HillClimbingSearch;
 public class AzamonMain {
 
     public static void main(String[] args) {
+
         int nPaquetes;
         double ratio;
         int seed;
+        int heuristic;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Introduce el número de paquetes: ");
@@ -27,16 +29,24 @@ public class AzamonMain {
         System.out.print("Introduce la semilla: ");
         seed = scanner.nextInt();
 
-        scanner.close();
+        System.out.print("Introduce el heuristico: ");
+        heuristic = scanner.nextInt();
 
-        AzamonState state = new AzamonState(nPaquetes, ratio, seed);
+        scanner.close();
+        //Ini tiempo
+
+        AzamonState state = new AzamonState(nPaquetes, ratio, seed, heuristic);
 
         HillClimbingMSN(state);
+
+        System.out.println(state.getAsignaciones().toString());
+        //Fin tiempo
+        //System.out Fin - ini
     }
 
     private static void HillClimbingMSN(AzamonState azamon) {
         try{
-            Problem problem = new Problem(azamon, new AzamonSuccesorFunctionSA(), new AzamonGoalTest(), new AzamonHeuristicFunction());
+            Problem problem = new Problem(azamon, new AzamonSuccesorFunction(), new AzamonGoalTest(), new AzamonHeuristicFunction());
             Search search = new HillClimbingSearch();
             SearchAgent agent = new SearchAgent(problem, search);
 
