@@ -1,9 +1,3 @@
-/*
-* ProbTSPJFrame.java
-*
-* Created on 4 de agosto de 2005, 23:18
-*/
-
 package MSN;
 
 import java.util.Iterator;
@@ -60,7 +54,6 @@ public class AzamonFrame extends javax.swing.JFrame {
         ejecutarB = new javax.swing.JButton();
         PaquetesS = new javax.swing.JSlider();
         RatioS = new javax.swing.JSlider();
-        ejecutarPrB = new javax.swing.JButton();
         SemillaL = new javax.swing.JLabel();
         SemillaTF = new javax.swing.JFormattedTextField(Integer.valueOf(100));
         AnnealingPL = new javax.swing.JLabel();
@@ -73,6 +66,15 @@ public class AzamonFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Salir = new javax.swing.JMenuItem();
+        HeuristicL = new javax.swing.JLabel();
+        SolutionL = new javax.swing.JLabel();
+        HeuristicPrecioRadio = new javax.swing.JRadioButton();
+        HeuristicFelicidadRadio = new javax.swing.JRadioButton();
+        SolutionPrecioRadio = new javax.swing.JRadioButton();
+        SolutionFelicidadRadio = new javax.swing.JRadioButton();
+        HeuristicButtons = new javax.swing.ButtonGroup();
+        SolutionButtons = new javax.swing.ButtonGroup();
+
 
         jLabel2.setText("jLabel2");
 
@@ -112,7 +114,7 @@ public class AzamonFrame extends javax.swing.JFrame {
         PaquetesS.setPaintTicks(true);
         PaquetesS.setSnapToTicks(true);
         PaquetesS.setToolTipText("Elige el número de paquetes");
-        PaquetesS.setValue(10);
+        PaquetesS.setValue(20);
 
         RatioS.setMajorTickSpacing(50);
         RatioS.setMaximum(150);
@@ -124,12 +126,20 @@ public class AzamonFrame extends javax.swing.JFrame {
         RatioS.setToolTipText("Elige el ratio");
         RatioS.setValue(100);
 
-        ejecutarPrB.setText("Ejecutar Prob Específico");
-        ejecutarPrB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ejecutarPrBActionPerformed(evt);
-            }
-        });
+        HeuristicL.setText("Heurístico");
+        SolutionL.setText("Solución Inicial");
+
+        HeuristicPrecioRadio.setText("Precio");
+        HeuristicPrecioRadio.setSelected(true);
+        HeuristicFelicidadRadio.setText("Felicidad");
+        SolutionPrecioRadio.setText("Precio");
+        SolutionPrecioRadio.setSelected(true);
+        SolutionFelicidadRadio.setText("Felicidad");
+
+        HeuristicButtons.add(HeuristicPrecioRadio);
+        HeuristicButtons.add(HeuristicFelicidadRadio);
+        SolutionButtons.add(SolutionPrecioRadio);
+        SolutionButtons.add(SolutionFelicidadRadio);
 
         SemillaL.setText("Semilla:");
 
@@ -239,11 +249,22 @@ public class AzamonFrame extends javax.swing.JFrame {
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .add(layout.createSequentialGroup()
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(ejecutarB)
-                        .add(ejecutarPrB)
+                        .add(HeuristicL)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(HeuristicPrecioRadio)
+                                .add(HeuristicFelicidadRadio))
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(SolutionL)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(SolutionPrecioRadio)
+                                .add(SolutionFelicidadRadio))
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(SemillaL)
                         .add(SemillaTF)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(layout.createSequentialGroup()
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(ejecutarB)
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                 .add(layout.createSequentialGroup()
@@ -290,12 +311,21 @@ public class AzamonFrame extends javax.swing.JFrame {
                                                 org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                                .add(ejecutarB)
-                                .add(ejecutarPrB)
+                                .add(HeuristicL)
+                                .add(layout.createSequentialGroup()
+                                        .add(HeuristicPrecioRadio)
+                                .add(HeuristicFelicidadRadio))
+                                .add(SolutionL)
+                                .add(layout.createSequentialGroup()
+                                        .add(SolutionPrecioRadio)
+                                        .add(SolutionFelicidadRadio))     
                                 .add(SemillaL)
                                 .add(SemillaTF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
                                         org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
                                         org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                                .add(ejecutarB))
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
         pack();
@@ -305,30 +335,23 @@ public class AzamonFrame extends javax.swing.JFrame {
         dispose();
     }
 
-    private void ejecutarPrBActionPerformed(java.awt.event.ActionEvent evt) {
+    private void ejecutarBMousePressed(java.awt.event.MouseEvent evt) {
         try {
 
             int sm = numForm.parse(SemillaTF.getText()).intValue();
             int ratio = RatioS.getValue()/100;
+            int heuristic = HeuristicFelicidadRadio.isSelected() ? 1 : 0;
+            boolean solutionAlt = SolutionFelicidadRadio.isSelected();
             nPaquetes = PaquetesS.getValue();
             hillClimbTA.setText("");
             annealingTA.setText("");
           
-            AzamonState state = new AzamonState(nPaquetes, ratio, sm, 0);
+            AzamonState state = new AzamonState(nPaquetes, ratio, sm, heuristic, solutionAlt);
             HillClimbingMSN(state, hillClimbTA);
             SimulatedAnnealingMSN(state, annealingTA);
           
         } catch (ParseException e) {
         }
-    }
-
-    private void ejecutarBMousePressed(java.awt.event.MouseEvent evt) {
-            hillClimbTA.setText("");
-            annealingTA.setText("");
-      
-            AzamonState state = new AzamonState(20, 2, 0, 0);
-            HillClimbingMSN(state, hillClimbTA);
-            SimulatedAnnealingMSN(state, annealingTA);
     }
 
     private void HillClimbingMSN(AzamonState state, java.awt.TextArea a) {
@@ -388,6 +411,14 @@ public class AzamonFrame extends javax.swing.JFrame {
         });
     }
 
+    private javax.swing.ButtonGroup HeuristicButtons;
+    private javax.swing.ButtonGroup SolutionButtons;
+    private javax.swing.JRadioButton HeuristicPrecioRadio;
+    private javax.swing.JRadioButton HeuristicFelicidadRadio;
+    private javax.swing.JRadioButton SolutionPrecioRadio;
+    private javax.swing.JRadioButton SolutionFelicidadRadio;
+    private javax.swing.JLabel HeuristicL;
+    private javax.swing.JLabel SolutionL;
     private javax.swing.JLabel AnnealingL;
     private javax.swing.JLabel AnnealingPL;
     private javax.swing.JSlider PaquetesS;
@@ -406,7 +437,6 @@ public class AzamonFrame extends javax.swing.JFrame {
     private java.awt.Label paquetesL;
     private java.awt.Label ratioL;
     private javax.swing.JButton ejecutarB;
-    private javax.swing.JButton ejecutarPrB;
     private java.awt.TextArea hillClimbTA;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
