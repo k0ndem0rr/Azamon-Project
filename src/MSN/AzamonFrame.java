@@ -74,7 +74,7 @@ public class AzamonFrame extends javax.swing.JFrame {
         SolutionFelicidadRadio = new javax.swing.JRadioButton();
         HeuristicButtons = new javax.swing.ButtonGroup();
         SolutionButtons = new javax.swing.ButtonGroup();
-
+        timeTA = new java.awt.TextArea();
 
         jLabel2.setText("jLabel2");
 
@@ -93,6 +93,10 @@ public class AzamonFrame extends javax.swing.JFrame {
         hillClimbTA.setEditable(false);
         hillClimbTA.setName("hillClimbingTA");
         hillClimbTA.setRows(30);
+
+        timeTA.setColumns(40);
+        timeTA.setEditable(false);
+        timeTA.setRows(6);
 
         paquetesL.setText("Num paquetes:");
 
@@ -230,6 +234,10 @@ public class AzamonFrame extends javax.swing.JFrame {
                                         .add(annealingTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
                                                 org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
                                                 org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                                        .add(timeTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
@@ -295,6 +303,10 @@ public class AzamonFrame extends javax.swing.JFrame {
                                                 org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
                                                 org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .add(layout.createSequentialGroup()
+                                        .add(timeTA, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+                                                org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+                                                org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(layout.createSequentialGroup()
                                         .add(ParKL)
                                         .add(ParKS, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
                                                 org.jdesktop.layout.GroupLayout.DEFAULT_SIZE * 2,
@@ -338,18 +350,28 @@ public class AzamonFrame extends javax.swing.JFrame {
     private void ejecutarBMousePressed(java.awt.event.MouseEvent evt) {
         try {
 
-            int sm = numForm.parse(SemillaTF.getText()).intValue();
-            int ratio = RatioS.getValue()/100;
-            int heuristic = HeuristicFelicidadRadio.isSelected() ? 1 : 0;
-            boolean solutionAlt = SolutionFelicidadRadio.isSelected();
-            nPaquetes = PaquetesS.getValue();
-            hillClimbTA.setText("");
-            annealingTA.setText("");
-          
-            AzamonState state = new AzamonState(nPaquetes, ratio, sm, heuristic, solutionAlt);
-            HillClimbingMSN(state, hillClimbTA);
-            SimulatedAnnealingMSN(state, annealingTA);
-          
+                int sm = numForm.parse(SemillaTF.getText()).intValue();
+                int ratio = RatioS.getValue()/100;
+                int heuristic = HeuristicFelicidadRadio.isSelected() ? 1 : 0;
+                boolean solutionAlt = SolutionFelicidadRadio.isSelected();
+                nPaquetes = PaquetesS.getValue();
+                hillClimbTA.setText("");
+                annealingTA.setText("");
+                timeTA.setText("");
+
+                long startTime = System.currentTimeMillis();
+                AzamonState state = new AzamonState(nPaquetes, ratio, sm, heuristic, solutionAlt);
+                long solutionTime = System.currentTimeMillis();
+                HillClimbingMSN(state, hillClimbTA);
+                long hillclimbingTime = System.currentTimeMillis();
+                SimulatedAnnealingMSN(state, annealingTA);
+                long annealingTime = System.currentTimeMillis();
+
+                timeTA.append("Tiempo del primer estado: " + (solutionTime - startTime) + " ms\n");
+                timeTA.append("Tiempo de Hill Climbing: " + (hillclimbingTime - solutionTime) + " ms\n");
+                timeTA.append("Tiempo de Simulated Annealing: " + (annealingTime - hillclimbingTime) + " ms\n");
+                timeTA.append("Tiempo total: " + (annealingTime - startTime) + " ms\n");
+
         } catch (ParseException e) {
         }
     }
@@ -445,5 +467,6 @@ public class AzamonFrame extends javax.swing.JFrame {
     private NumberFormatter nfor;
     private DefaultFormatterFactory formSeed;
     private DefaultFormatterFactory formLambda;
+    private java.awt.TextArea timeTA;
 
 }
