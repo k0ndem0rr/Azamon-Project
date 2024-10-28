@@ -66,7 +66,7 @@ public class AzamonState {
         // Ordenación de paquetes por prioridad
         java.util.Arrays.sort(sortedPaquetes, new java.util.Comparator<double[]>() {
             public int compare(double[] a, double[] b) {
-                return Double.compare(a[0], b[0]);
+                return Double.compare(b[0], a[0]);
             }
         });
         
