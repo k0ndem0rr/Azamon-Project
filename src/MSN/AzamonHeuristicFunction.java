@@ -40,7 +40,7 @@ public class AzamonHeuristicFunction implements HeuristicFunction {
                 }
                 if ((prio - oferta.getDias()) > 0) felicidad += (prio - oferta.getDias());
             }
-            double finalHeuristic = precioTotal * 100 - felicidad;
+            double finalHeuristic = precioTotal * 10 - felicidad;
             return -finalHeuristic;
         }
     }
